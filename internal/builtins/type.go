@@ -1,5 +1,7 @@
 package BuiltIns
 
+import "io"
+
 var builtins = []string{
 	"type", "pwd", "echo", "exit",
 }
@@ -12,9 +14,10 @@ var builtins = []string{
 // 	}
 // }
 
-func GetType(tp string) bool {
+func GetType(w io.Writer, tp string) bool {
 	for _, builtin := range builtins {
 		if tp == builtin {
+			io.WriteString(w, tp +" is a shell builtin\n")
 			return true
 		}
 	}

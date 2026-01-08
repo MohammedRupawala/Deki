@@ -1,7 +1,10 @@
 package BuiltIns
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+)
 
-func Echo(cmd string) {
-	fmt.Printf("%s\n", cmd)
+func Echo(w io.Writer, cmd string) {
+	fmt.Fprintln(w, cmd)
 }
