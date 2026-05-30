@@ -10,17 +10,19 @@ import (
 func FindExe(w io.Writer,command string) bool {
 	path, err := exec.LookPath(command)
 	if err != nil {
-		fmt.Fprintln(w,command + ": not found")
+		// fmt.Fprintf(w,command + ": not found")
+		fmt.Fprintf(w,"%s: not found\n", command)
 		return false
 	}
-	fmt.Printf("%s is %s\n", command, path)
+	fmt.Fprintf(w,"%s is %s\n", command, path)
 	return true
 }
 
 
 func FindAndRun(out io.Writer,errOut io.Writer,command []string) bool {
+	// fmt.Fprintf(out,"\rFindExe called for command %s\n\r", command[0])
+
 	path, err := exec.LookPath(command[0])
-	// print(command[0])
 	if err != nil {
 		return false
 	}
@@ -31,8 +33,6 @@ func FindAndRun(out io.Writer,errOut io.Writer,command []string) bool {
 	cmd.Stdout = out
 	cmd.Stderr = errOut
 	_ = cmd.Run()
-	// if errorr != nil {
-	// 	fmt.Fprintln(errOut, errorr)
-	// }
+
 	return true
 }

@@ -12,6 +12,7 @@ func FindCurrentWorkingDirectory() string {
 	// }
 	dir, err := os.Getwd()
 	if err != nil {
+		// fmt.Print("\r");
 		fmt.Fprintln(os.Stderr, "Error getting current directory:", err)
 		os.Exit(2)
 	}
